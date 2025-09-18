@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Juegos y Multimedia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Plataforma de Entretenimiento</h1>
+        <nav>
+            <button onclick="mostrar('juegos')">Juegos</button>
+            <button onclick="mostrar('videos')">Videos de YouTube</button>
+            <button onclick="mostrar('tiktok')">Videos de TikTok</button>
+            <button onclick="mostrar('google')">Buscador Google</button>
+            <button onclick="mostrar('ia')">IA (ChatGPT/Gemini)</button>
+            <button onclick="mostrar('escritorio')">Escritorio Remoto</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección de Juegos -->
+        <section id="juegos" class="seccion">
+            <h2>Juegos Integrados (1001 Juegos / CrazyGames / Friv)</h2>
+            <div id="juegos-menu">
+                <div class="juegos-grid">
+                    <div class="juego-card-link">
+                        <h3>Carreras</h3>
+                        <p>Siente la velocidad en la pista.</p>
+                        <button onclick="abrirJuego1001('racing')">Jugar</button>
+                    </div>
+                    <div class="juego-card-link">
+                        <h3>Fútbol</h3>
+                        <p>Demuestra tus habilidades en el campo.</p>
+                        <button onclick="abrirJuego1001('soccer')">Jugar</button>
+                    </div>
+                    <div class="juego-card-link">
+                        <h3>Tetris</h3>
+                        <p>El clásico juego de bloques.</p>
+                        <button onclick="abrirJuego1001('tetris')">Jugar</button>
+                    </div>
+                    <div class="juego-card-link">
+                        <h3>Bubble Shooter</h3>
+                        <p>Explota burbujas de colores.</p>
+                        <button onclick="abrirJuego1001('bubbles')">Jugar</button>
+                    </div>
+                    <div class="juego-card-link">
+                        <h3>Runner</h3>
+                        <p>Corre sin parar y esquiva obstáculos.</p>
+                        <button onclick="abrirJuego1001('runner')">Jugar</button>
+                    </div>
+                    <div class="juego-card-link">
+                        <h3>Princesas</h3>
+                        <p>Juegos mágicos para princesas.</p>
+                        <button onclick="abrirJuego1001('princess')">Jugar</button>
+                    </div>
+                    <div class="juego-card-link">
+                        <h3>Shooter</h3>
+                        <p>Acción y disparos.</p>
+                        <button onclick="abrirJuego1001('shooter')">Jugar</button>
+                    </div>
+                    <div class="juego-card-link">
+                        <h3>Cocina</h3>
+                        <p>Prepara deliciosas recetas.</p>
+                        <button onclick="abrirJuego1001('cooking')">Jugar</button>
+                    </div>
+                    <div class="juego-card-link">
+                        <h3>Arcade</h3>
+                        <p>Clásicos de las máquinas recreativas.</p>
+                        <button onclick="abrirJuego1001('arcade')">Jugar</button>
+                    </div>
+                    <div class="juego-card-link">
+                        <h3>Cerebro</h3>
+                        <p>Desafía tu mente con puzzles.</p>
+                        <button onclick="abrirJuego1001('brain')">Jugar</button>
+                    </div>
+                    <div class="juego-card-link">
+                        <h3>Circo</h3>
+                        <p>Diversión bajo la carpa.</p>
+                        <button onclick="abrirJuego1001('circus')">Jugar</button>
+                    </div>
+                    <div class="juego-card-link">
+                        <h3>Casino</h3>
+                        <p>Prueba tu suerte en el casino.</p>
+                        <button onclick="abrirJuego1001('casino')">Jugar</button>
+                    </div>
+                </div>
+                <div class="sitio-link">
+                    <p>¿Quieres más juegos? Visita el sitio completo:</p>
+                    <button class="sitio-completo" onclick="abrirJuego('https://www.crazygames.com/es')">Ir a CrazyGames</button>
+                </div>
+            </div>
+
+            <div id="juego-player" class="juego-player oculto">
+                <div class="player-header">
+                    <button class="btn-cerrar" onclick="cerrarJuego()">Cerrar Juego</button>
+                </div>
+                <iframe id="juego-frame" src="" allow="autoplay; fullscreen; clipboard-write; gamepad; xr-spatial-tracking; encrypted-media"></iframe>
+            </div>
+        </section>
+
+        <!-- Sección de Videos de YouTube -->
+        <section id="videos" class="seccion oculto">
+            <h2>Reproductor de YouTube</h2>
+            <div class="input-container">
+                <input type="text" id="url" placeholder="Pega aquí el enlace de YouTube" onkeypress="manejarEnter(event, verVideo)">
+                <button onclick="verVideo()">Ver Video</button>
+            </div>
+            <div class="video-container">
+                <iframe id="video" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- Sección de Videos de TikTok -->
+        <section id="tiktok" class="seccion oculto">
+            <h2>Reproductor de TikTok</h2>
+            <div class="input-container">
+                <input type="text" id="tiktok-url" placeholder="Pega aquí el enlace de TikTok" onkeypress="manejarEnter(event, verTikTok)">
+                <button onclick="verTikTok()">Ver TikTok</button>
+            </div>
+            <div id="tiktok-player">
+                <p>Pega un enlace de TikTok para ver el video aquí</p>
+            </div>
+        </section>
+
+        <!-- Sección de Buscador de Google -->
+        <section id="google" class="seccion oculto">
+            <h2>Buscador de Google</h2>
+            <div class="input-container">
+                <input type="text" id="google-search" placeholder="Escribe tu búsqueda en Google" onkeypress="manejarEnter(event, buscarEnGoogle)">
+                <button onclick="buscarEnGoogle()">Buscar</button>
+            </div>
+            <div id="google-player">
+                <p>Escribe algo en el buscador para ver los resultados de Google aquí</p>
+            </div>
+        </section>
+
+        <!-- Sección de IA (ChatGPT/Gemini) -->
+        <section id="ia" class="seccion oculto">
+            <h2>Asistentes de IA</h2>
+            <div class="ai-nav">
+                <button id="btn-chatgpt" class="ai-btn active" onclick="cambiarIA('chatgpt')">ChatGPT</button>
+                <button id="btn-gemini" class="ai-btn" onclick="cambiarIA('gemini')">Gemini</button>
+            </div>
+            <div class="ai-container">
+                <div id="chatgpt-player">
+                    <iframe src="https://chat.openai.com/chat" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div id="gemini-player" class="oculto">
+                    <iframe src="https://gemini.google.com/" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Escritorio Remoto (Simulado) -->
+        <section id="escritorio" class="seccion oculto">
+            <h2>Escritorio Remoto (Simulado)</h2>
+            <p>Esta sección simula un navegador remoto. La funcionalidad de cambio de IP no es posible con solo HTML/CSS/JS del lado del cliente.</p>
+            <div class="desktop-nav">
+                <button id="btn-browser" class="desktop-btn active" onclick="cambiarEscritorio('browser')">Navegador Web</button>
+                <button id="btn-desktop" class="desktop-btn" onclick="cambiarEscritorio('desktop')">Windows 10 (Demo)</button>
+                <button id="btn-os" class="desktop-btn" onclick="cambiarEscritorio('os')">Linux (Demo)</button>
+                <button id="btn-code" class="desktop-btn" onclick="cambiarEscritorio('code')">VS Code (Demo)</button>
+            </div>
+            <div class="desktop-container">
+                <div id="browser-player">
+                    <iframe src="https://www.google.com" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div id="desktop-player" class="oculto">
+                    <iframe src="https://www.onworks.net/os-distributions/free-online-windows-10-from-anywhere" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div id="os-player" class="oculto">
+                    <iframe src="https://www.onworks.net/os-distributions/free-online-ubuntu-from-anywhere" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div id="code-player" class="oculto">
+                    <iframe src="https://vscode.dev/" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <p style="font-size: 0.8em; color: #aaa; margin-top: 10px;">Las demos de sistemas operativos y VS Code son proporcionadas por servicios externos y pueden tener limitaciones.</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
